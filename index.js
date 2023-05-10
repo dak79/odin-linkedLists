@@ -55,13 +55,29 @@ const LinkedList = () => {
     size++
   }
 
+  /**
+   * insertAt.
+   * Insert a new node with a provided value at given index
+   * @param {} value
+   * @param {Number} index
+   *
+   * Time complexity: O(n)
+   */
   const insertAt = (value, index) => {
     const node = Node(value)
     if (isEmpty()) return insertFirstNode(node)
+
+    if (index === 0) return prepend(value)
+
+    let prev = at(index - 1)
+    if (prev !== 'Invalid Index') {
+      node.next = prev.next
+      prev.next = node
+      size++
+    }
   }
 
   /** TODO:
-   * insertAt(value, index)
    * removeAt(index)
    * /
 
@@ -114,7 +130,7 @@ const LinkedList = () => {
 
   /**
    * at.
-   * Return the node value at given index
+   * Return the node at given index
    * @param {Number} index
    *
    * Time complexity: O(n)
@@ -125,7 +141,7 @@ const LinkedList = () => {
     if (index < 0 || index > size) return 'Invalid index'
 
     for (let i = 0, curr = head; i <= size && curr; i++, curr = curr.next)
-      if (i === index) return curr.value
+      if (i === index) return curr
 
     return 'Invalid Index'
   }
@@ -222,6 +238,7 @@ const LinkedList = () => {
   return {
     append,
     prepend,
+    insertAt,
     pop,
     shift,
     at,
@@ -303,12 +320,12 @@ console.log(ll.toString())
 console.log(`Linked list is empty? ${ll.isEmpty()}.`)
 console.log('---------------------------------')
 console.log('RETURN THE NODE AT GIVEN INDEX')
-console.log(`At index 0 there is value ${ll.at(0)}`)
-console.log(`At index 1 there is value ${ll.at(1)}`)
-console.log(`At index 2 there is value ${ll.at(2)}`)
-console.log(`At index 3 there is value ${ll.at(3)}`)
-console.log(`At index 4 there is value ${ll.at(4)}`)
-console.log(`At index 5 there is value ${ll.at(5)}`)
+console.log('Index 0: ', ll.at(0))
+console.log('Index 1: ', ll.at(1))
+console.log('Index 2: ', ll.at(2))
+console.log('Index 3: ', ll.at(3))
+console.log('Index 4: ', ll.at(4))
+console.log('Index 5: ', ll.at(5))
 console.log(ll.toString())
 console.log(`Index -9: ${ll.at(-9)}`)
 console.log(`Index 36: ${ll.at(36)}`)
@@ -344,3 +361,27 @@ console.log(`The index of value 40:  ${ll.find(40)}`)
 console.log(`The index of value 74:  ${ll.find(74)}`)
 console.log(`The index of value 18:  ${ll.find(18)}`)
 console.log('---------------------------------')
+ll.insertAt(12, 0)
+console.log(ll.toString())
+ll.insertAt(10, 1)
+console.log(ll.toString())
+ll.insertAt(132, 1)
+console.log(ll.toString())
+ll.insertAt(32, 3)
+console.log(ll.toString())
+ll.insertAt(562, 5)
+console.log(ll.toString())
+ll.insertAt(1456, 7)
+console.log(ll.toString())
+console.log(
+  `In the Linked List there ${
+    ll.getSize() === 1 ? 'is 1 node.' : `are ${ll.getSize()} nodes.`
+  }`
+)
+ll.insertAt(9, 9)
+console.log(ll.toString())
+console.log(
+  `In the Linked List there ${
+    ll.getSize() === 1 ? 'is 1 node.' : `are ${ll.getSize()} nodes.`
+  }`
+)
