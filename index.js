@@ -1,7 +1,3 @@
-/**
- * Linked List
- */
-
 const Node = (value = null, next = null) => {
   return {
     value,
@@ -72,7 +68,7 @@ const LinkedList = () => {
     // if (index === size) return append(value)
 
     let prev = at(index - 1)
-    if (prev !== 'Invalid Index') {
+    if (prev && prev !== 'Invalid Index') {
       node.next = prev.next
       prev.next = node
       if (prev === tail) tail = node
@@ -132,6 +128,8 @@ const LinkedList = () => {
    * Removes the node at given index
    *
    * @param {Number} index
+   *
+   * Time complexity: O(n)
    */
   const removeAt = (index) => {
     if (isEmpty()) return 0
