@@ -69,17 +69,16 @@ const LinkedList = () => {
 
     if (index === 0) return prepend(value)
 
+    // if (index === size) return append(value)
+
     let prev = at(index - 1)
     if (prev !== 'Invalid Index') {
       node.next = prev.next
       prev.next = node
+      if (prev === tail) tail = node
       size++
     }
   }
-
-  /** TODO:
-   * removeAt(index)
-   * /
 
   /**
    * removeOneNode.
@@ -98,7 +97,7 @@ const LinkedList = () => {
    * Time complexity: O(n)
    */
   const pop = () => {
-    if (isEmpty()) return
+    if (isEmpty()) return 0
 
     if (size === 1) return removeOneNode()
 
@@ -120,12 +119,33 @@ const LinkedList = () => {
    * Time complexity: O(1)
    */
   const shift = () => {
-    if (isEmpty()) return
+    if (isEmpty()) return 0
 
     if (size === 1) return removeOneNode()
 
     head = head.next
     size--
+  }
+
+  /**
+   * removeAt.
+   * Removes the node at given index
+   *
+   * @param {Number} index
+   */
+  const removeAt = (index) => {
+    if (isEmpty()) return 0
+
+    if (index === 0) return shift()
+
+    if (size === 1) return removeOneNode()
+
+    let prev = at(index - 1)
+    if (prev && prev !== 'Invalid index') {
+      prev.next = prev.next.next
+      if (!prev.next) tail = prev
+      size--
+    }
   }
 
   /**
@@ -241,6 +261,7 @@ const LinkedList = () => {
     insertAt,
     pop,
     shift,
+    removeAt,
     at,
     contains,
     find,
@@ -361,17 +382,26 @@ console.log(`The index of value 40:  ${ll.find(40)}`)
 console.log(`The index of value 74:  ${ll.find(74)}`)
 console.log(`The index of value 18:  ${ll.find(18)}`)
 console.log('---------------------------------')
+console.log('INSERT THE ELEMENT AT INDEX')
 ll.insertAt(12, 0)
+console.log('Inserted 12 at index 0 - New head')
+console.log(`The head value is ${ll.getHead()}`)
 console.log(ll.toString())
 ll.insertAt(10, 1)
+console.log('Inserted 10 at index 1')
 console.log(ll.toString())
 ll.insertAt(132, 1)
+console.log('Inserted 132 at index 1')
 console.log(ll.toString())
 ll.insertAt(32, 3)
+console.log('Inserted 32 at index 3')
 console.log(ll.toString())
 ll.insertAt(562, 5)
+console.log('Inserted 562 at index 5')
 console.log(ll.toString())
 ll.insertAt(1456, 7)
+console.log('Inserted 1456 at index 7 - New tail')
+console.log(`The tail value is ${ll.getTail()}`)
 console.log(ll.toString())
 console.log(
   `In the Linked List there ${
@@ -379,9 +409,40 @@ console.log(
   }`
 )
 ll.insertAt(9, 9)
+console.log(`The head value is ${ll.getHead()}`)
+console.log(`The tail value is ${ll.getTail()}`)
 console.log(ll.toString())
 console.log(
   `In the Linked List there ${
     ll.getSize() === 1 ? 'is 1 node.' : `are ${ll.getSize()} nodes.`
   }`
 )
+console.log('---------------------------------')
+console.log('REMOVE THE ELEMENT AT INDEX')
+ll.removeAt(0)
+console.log('Removed 12 at index 0 - New head')
+console.log(`The head value is ${ll.getHead()}`)
+console.log(ll.toString())
+ll.removeAt(1)
+console.log('Removed 10 at index 1')
+console.log(ll.toString())
+ll.removeAt(1)
+console.log('Removed 32 at index 1')
+console.log(ll.toString())
+ll.removeAt(2)
+console.log('Removed 562 at index 2')
+console.log(ll.toString())
+ll.removeAt(3)
+console.log('Removed 1456 at index 3 - New Tail')
+console.log(`The tail value is ${ll.getTail()}`)
+console.log(ll.toString())
+ll.removeAt(1)
+console.log('Removed 4 at index 1')
+console.log(`The tail value is ${ll.getTail()}`)
+console.log(ll.toString())
+ll.removeAt(0)
+console.log('Removed 132 at index 0 - New Tail and New Head')
+console.log(`The head value is ${ll.getHead()}`)
+console.log(`The tail value is ${ll.getTail()}`)
+console.log(ll.toString())
+console.log('---------------------------------')
