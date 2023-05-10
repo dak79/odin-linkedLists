@@ -112,13 +112,31 @@ const LinkedList = () => {
   const at = (index) => {
     if (isEmpty()) return 'List is empty'
 
-    if (index < 0 || index > size || typeof index !== Number)
-      return 'Invalid index'
+    if (index < 0 || index > size) return 'Invalid index'
 
     for (let i = 1, curr = head; i <= size; i++, curr = curr.next)
       if (i === index) return curr.value
 
-    return 'Nothing found at that index'
+    return 'Invalid Index'
+  }
+
+  /**
+   * contains.
+   * Returns true if parmeter is in the list otherwise returns false
+   * @param {} value
+   *
+   * Time complexity: O(n)
+   */
+  const contains = (value) => {
+    if (isEmpty()) return false
+
+    let curr = head
+    while (curr) {
+      if (curr.value === value) return true
+      curr = curr.next
+    }
+
+    return false
   }
 
   /** TODO:
@@ -187,6 +205,7 @@ const LinkedList = () => {
     pop,
     shift,
     at,
+    contains,
     isEmpty,
     getSize,
     getHead,
@@ -289,4 +308,11 @@ console.log(ll.toString())
 ll.shift()
 console.log(`The head value is ${ll.getHead()}`)
 console.log(ll.toString())
+console.log('---------------------------------')
+console.log('CONTAINS THE ELEMENT')
+console.log(ll.toString())
+console.log(`The list contains 4? ${ll.contains(4)}`)
+console.log(`The list contains 40? ${ll.contains(40)}`)
+console.log(`The list contains 74? ${ll.contains(74)}`)
+console.log(`The list contains 18? ${ll.contains(18)}`)
 console.log('---------------------------------')
