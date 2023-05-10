@@ -139,9 +139,24 @@ const LinkedList = () => {
     return false
   }
 
+  /**
+   * find.
+   * Returns the index of the node containing value, or null if not found
+   * @param {} value
+   *
+   * Time complexity: O(n)
+   *
+   */
+  const find = (value) => {
+    if (isEmpty()) return null
+
+    for (let i = 1, curr = head; i <= size; i++, curr = curr.next)
+      if (curr.value === value) return i
+
+    return null
+  }
+
   /** TODO:
-   * contains(value)
-   * find(value)
    * insertAt(value, index)
    * removeAt(index)
    * /
@@ -206,6 +221,7 @@ const LinkedList = () => {
     shift,
     at,
     contains,
+    find,
     isEmpty,
     getSize,
     getHead,
@@ -315,4 +331,11 @@ console.log(`The list contains 4? ${ll.contains(4)}`)
 console.log(`The list contains 40? ${ll.contains(40)}`)
 console.log(`The list contains 74? ${ll.contains(74)}`)
 console.log(`The list contains 18? ${ll.contains(18)}`)
+console.log('---------------------------------')
+console.log('FIND THE INDEX OF THE ELEMENT')
+console.log(ll.toString())
+console.log(`The index of value 4:  ${ll.find(4)}`)
+console.log(`The index of value 40:  ${ll.find(40)}`)
+console.log(`The index of value 74:  ${ll.find(74)}`)
+console.log(`The index of value 18:  ${ll.find(18)}`)
 console.log('---------------------------------')
