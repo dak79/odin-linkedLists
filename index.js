@@ -55,6 +55,16 @@ const LinkedList = () => {
     size++
   }
 
+  const insertAt = (value, index) => {
+    const node = Node(value)
+    if (isEmpty()) return insertFirstNode(node)
+  }
+
+  /** TODO:
+   * insertAt(value, index)
+   * removeAt(index)
+   * /
+
   /**
    * removeOneNode.
    * Remove node in a size 1 linked list
@@ -114,7 +124,7 @@ const LinkedList = () => {
 
     if (index < 0 || index > size) return 'Invalid index'
 
-    for (let i = 1, curr = head; i <= size; i++, curr = curr.next)
+    for (let i = 0, curr = head; i <= size && curr; i++, curr = curr.next)
       if (i === index) return curr.value
 
     return 'Invalid Index'
@@ -150,16 +160,11 @@ const LinkedList = () => {
   const find = (value) => {
     if (isEmpty()) return null
 
-    for (let i = 1, curr = head; i <= size; i++, curr = curr.next)
+    for (let i = 0, curr = head; i <= size && curr; i++, curr = curr.next)
       if (curr.value === value) return i
 
     return null
   }
-
-  /** TODO:
-   * insertAt(value, index)
-   * removeAt(index)
-   * /
 
   /**
    * isEmpty.
@@ -298,12 +303,12 @@ console.log(ll.toString())
 console.log(`Linked list is empty? ${ll.isEmpty()}.`)
 console.log('---------------------------------')
 console.log('RETURN THE NODE AT GIVEN INDEX')
+console.log(`At index 0 there is value ${ll.at(0)}`)
 console.log(`At index 1 there is value ${ll.at(1)}`)
 console.log(`At index 2 there is value ${ll.at(2)}`)
 console.log(`At index 3 there is value ${ll.at(3)}`)
 console.log(`At index 4 there is value ${ll.at(4)}`)
 console.log(`At index 5 there is value ${ll.at(5)}`)
-console.log(`At index 6 there is value ${ll.at(6)}`)
 console.log(ll.toString())
 console.log(`Index -9: ${ll.at(-9)}`)
 console.log(`Index 36: ${ll.at(36)}`)
