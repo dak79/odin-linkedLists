@@ -7,7 +7,9 @@ goal here is to implement and work with a custom data structure: linked list.
 
 ## Technologies
 
-JavaScript, npm, git.
+- JavaScript
+- Npm
+- Git
 
 ## Assignment
 
@@ -40,4 +42,3 @@ Extra Credit
 
 Extra Credit Tip: When you insert or remove a node, consider how it will affect the
 existing nodes. Some of the nodes will need their nextNode link updated.
-
